@@ -31,11 +31,11 @@ export default function Navbar({ location }: Props) {
           `http://api.openweathermap.org/geo/1.0/direct?q=${value},${countryCode}&limit=${limit}&appid=${API_KEY}`
         );
 
-       // console.log("dings",response);
+        console.log("City name", response.data.map((item: any) => console.log(item.name)));
 
-        const suggestions = response.data.list.map((item: any) => item.name);
-        console.log("Suggestions",suggestions);
+        const suggestions = response.data.map((item: any) => item.name);
         setSuggestions(suggestions);
+        console.log("Suggestions",suggestions);
         setError("")
         setShowSuggestions(true);
       } catch (error) {
@@ -58,6 +58,7 @@ export default function Navbar({ location }: Props) {
     setLoadingCity(true);
     e.preventDefault();
     if (suggestions.length == 0) {
+      console.log("Suggestions in handler",suggestions)
       setError("Location not found");
       setLoadingCity(false);
     }
