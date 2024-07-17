@@ -109,21 +109,20 @@ export default function Home() {
   });
 
   if (isLoading) return (
-    <div className="flex items-center min-h-screen justify-center">
-      <p className="animate-bounce">Loading...</p>
+    <div className="flex items-center min-h-screen justify-center bg-bkg-2">
+      <p className="animate-bounce text-content">Loading...</p>
     </div>
   );
 
   return (
-    <div className="flex flex-col gap-4 bg-gray-100 min-h-screen">
+    <div className="flex flex-col gap-4 bg-bkg-2 min-h-screen">
       <Navbar location={data?.city.name} />
       <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9 w-full pb-10 pt-4">
         {loadingCity ? <WeatherSkeleton /> :
           <>
-
             <section className="space-y-4">
               <div className="space-y-2">
-                <h2 className="flex gap-1 text-2xl items-end">
+                <h2 className="flex gap-1 text-2xl items-end text-content">
                   <p>{format(parseISO(firstData?.dt_txt ?? ''), 'EEEE')}</p>
                   <p className="text-lg">({format(parseISO(firstData?.dt_txt ?? ''), 'dd.MM.yyyy')})</p>
                 </h2>
@@ -171,7 +170,7 @@ export default function Home() {
                   <p className="capitalize text-center">{firstData?.weather[0].description}</p>
                   <WeatherIcon iconName={getDayOrNightIocn(firstData?.weather[0].icon ?? "", firstData?.dt_txt ?? "")} />
                 </Container>
-                <Container className="bg-yellow-300/80 px-6 gap-4 justify-between overflow-x-auto">
+                <Container className="bg-bkg-3 px-6 gap-4 justify-between overflow-x-auto">
                   <WeatherDetails
                     visability={meterToKilometers(firstData?.visibility ?? 1000)}
                     airPressure={`${firstData?.main.pressure} hPa`}
@@ -187,7 +186,7 @@ export default function Home() {
               </div>
             </section>
             <section className="flex w-full flex-col gap-4">
-              <p className="text-2xl">Forcast 7 days</p>
+              <p className="text-2xl text-content">Forcast 7 days</p>
               {firstDataForEachDate.map((d, i) => (
                 <ForecastWeatherDetail
                   key={i}
