@@ -23,7 +23,10 @@ const config: Config = {
           3: "rgb(var(--color-bkg3) / <alpha-value>)",
         },
         con: "rgb(var(--color-con) / <alpha-value>)",
-        content: "rgb(var(--color-content) / <alpha-value>)",
+        content: {
+          1:"rgb(var(--color-content1) / <alpha-value>)",
+          2:"rgb(var(--color-content2) / <alpha-value>)",
+        },
         backgroundImage: {
           "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
           "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",

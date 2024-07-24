@@ -46,9 +46,9 @@ export interface SingleWeatherDetailProps {
 function SingleWeatherDetail(props: SingleWeatherDetailProps) {
     return (
         <div className='flex flex-col justify-between gap-2 items-center text-xs font-semibold text-black'>
-            <p className='whitespace-nowrap'>{props.information}</p>
+            <p className='whitespace-nowrap text-content-2'>{props.information}</p>
             <div className='text-3xl text-black'>{props.icon}</div>
-            <p>{props.value}</p>
+            <p className='text-content-2'>{props.value}</p>
         </div>
     )
 }
