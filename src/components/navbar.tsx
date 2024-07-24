@@ -7,14 +7,16 @@ import axios from 'axios';
 import { useAtom } from 'jotai';
 import { loadingCityAtom, placeAtom } from '@/app/atom';
 import ThemeToggle from './themeToggle';
+import GrillModal from './grillmodal';
+import { API_KEY, countryCode, limit } from '@/utils/globalValues';
 
-type Props = { location?: string };
+type Props = { 
+  location?: string 
+  apiDataFromMainPage: any
+  forcastData: any
+};
 
-const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
-const limit = 6;
-const countryCode = 'DE'
-
-export default function Navbar({ location }: Props) {
+export default function Navbar({ location, apiDataFromMainPage, forcastData }: Props) {
 
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
@@ -77,19 +79,21 @@ export default function Navbar({ location }: Props) {
     <nav className='shadow-sm sticky top-0 left-0 z-50 bg-bkg-1'>
       <div className='h-[80px] w-full flex justify-between items-center max-w-7xl px-3 mx-auto'>
         <p className='flex items-center justify-center gap-2'>
-          <h2 className='text-content text-3xl'>Weather</h2>
+          <h2 className='text-content-1 text-3xl'>Weather</h2>
           <MdWbSunny className='text-3xl mt-1 text-bkg-3' />
         </p>
+        <GrillModal apiData={apiDataFromMainPage} forecast={forcastData}/>
         <section className='flex gap-2 items-center'>
           <div>
             <ThemeToggle />
           </div>
-          <MdMyLocation className='text 2xl text-content hover:opacity-80 cursor-pointer' />
+          <MdMyLocation className='text 2xl text-content-1 hover:opacity-80 cursor-pointer' />
           <MdOutlineLocationOn className='text-3xl' />
-          <p className='text-content text-sm'>{location}</p>
+          <p className='text-content-1 text-sm'>{location}</p>
           <div className='relative'>
             <Searchbox
               value={city}
+              buttonType='text'
               onChange={(e) => handleInputChange(e.target.value)}
               onSubmit={handleSubmitSearch} />
             <SuggetionBox
@@ -121,7 +125,7 @@ function SuggetionBox({
   return (
     <>
       {((showSuggestions && suggestions.length > 1) || error) && (
-        <ul className="mb-4 bg-bkg-1 absolute border top-[44px] left-0 border-gray-300 rounded-md min-w-[200px]  flex flex-col gap-1 py-2 px-2">
+        <ul className="mb-4 bg-bkg-2 text-content-2 absolute border top-[44px] left-0 border-gray-300 rounded-md min-w-[200px]  flex flex-col gap-1 py-2 px-2">
           {error && suggestions.length < 1 && (
             <li className="text-red-500 p-1 "> {error}</li>
           )}

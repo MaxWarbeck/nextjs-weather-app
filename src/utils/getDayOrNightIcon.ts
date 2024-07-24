@@ -1,4 +1,4 @@
-export function getDayOrNightIocn(
+export function getDayOrNightIcon(
     iconName: string,
     dateTimeString: string
 ): string{
