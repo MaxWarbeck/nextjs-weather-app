@@ -1,13 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
+import Typography from '@mui/material/Typography';
 import { format, parseISO } from "date-fns";
-import WeatherIcon from './weatherIcon';
+import { useState } from 'react';
+import WeatherIcon from './WeatherIcon';
 
 type Props = {
   apiData: any,
@@ -22,7 +22,6 @@ type Forecast = {
   icon: string;
 };
 
-
 export default function GrillModal({ apiData, forecast }: Props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -33,13 +32,12 @@ export default function GrillModal({ apiData, forecast }: Props) {
   //Change any types
 
   function forecastData(data: Forecast[]) {
-    console.log(data);
     return (
       Object.entries(data).map(([dataKey, dataValue]) => (
         <div className='flex flex-col space-y-2 p-3 w-fit justify-center items-center bg-bkg-1' key={dataKey}>
           <div className='flex flex-col bg-con p-4 rounded-lg space-y-2'>
             <div className='flex justify-center'>
-              <WeatherIcon iconName={dataValue?.icon} />
+              <WeatherIcon iconname={dataValue?.icon} />
             </div>
             <div className='flex justify-center'>
               <p className='text-content-1 capitalize'>{dataValue?.weatherDisc}</p>

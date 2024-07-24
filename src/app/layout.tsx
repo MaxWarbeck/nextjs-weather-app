@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   const queryClient = new QueryClient();
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" id="html" data-theme="dark">
       <QueryClientProvider client={queryClient}>
         <body className={inter.className}>
           {children}
