@@ -4,7 +4,6 @@ import { ImMeter } from 'react-icons/im';
 import { LuEye, LuSunrise, LuSunset } from 'react-icons/lu';
 import { MdAir } from 'react-icons/md';
 
-
 export interface WeatherDetailProps {
     visability: string;
     humidity: string;
