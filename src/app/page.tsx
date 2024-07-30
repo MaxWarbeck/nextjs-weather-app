@@ -6,10 +6,6 @@ import { format } from "date-fns/format";
 import { useAtom } from "jotai";
 import { useQuery } from "react-query";
 import Container from "@/components/Container";
-import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
-import Navbar from "@/components/Navbar";
-import WeatherDetails from "@/components/WeatherDetails";
-import WeatherIcon from "@/components/WeatherIcon";
 import WeatherSkeleton from "@/components/WeatherSkeleton";
 import { fromUnixTime, parseISO } from "date-fns";
 import { loadingCityAtom, placeAtom } from "./atom";
@@ -17,6 +13,10 @@ import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
 import { convertWindSpeed } from "@/utils/convertWindSpeed";
 import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
 import { meterToKilometers } from "@/utils/metersToKilometer";
+import Navbar from "@/components/Navbar";
+import WeatherIcon from "@/components/WeatherIcon";
+import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
+import WeatherDetails from "@/components/WeatherDetails";
 
 interface WeatherDetail {
   dt: number;
