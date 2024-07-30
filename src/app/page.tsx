@@ -17,6 +17,7 @@ import Navbar from "@/components/Navbar";
 import WeatherIcon from "@/components/WeatherIcon";
 import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
 import WeatherDetails from "@/components/WeatherDetails";
+import { API_KEY } from "@/utils/globalValues";
 
 interface WeatherDetail {
   dt: number;
@@ -80,7 +81,7 @@ export default function Home() {
 
   const { isLoading, error, data, refetch } = useQuery<WeatherData>('repoData', async () => {
     const { data } = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}&cnt=80`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=${API_KEY}&cnt=80`
     );
     return data;
   }
