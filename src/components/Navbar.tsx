@@ -10,9 +10,10 @@ import ThemeToggle from './DarkModeSwitch';
 import GrillModal from './GrillModal';
 import { API_KEY, countryCode, limit } from '@/utils/globalValues';
 import SuggetionBox from './SuggetionBox';
+import { MdOutdoorGrill } from "react-icons/md";
 
-type Props = { 
-  location?: string 
+type Props = {
+  location?: string
   apiDataFromMainPage: any
   forcastData: any
 };
@@ -30,7 +31,7 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
   const removeDuplicateCitys = (names: string[]): string[] => {
     const uniqueNames = Array.from(new Set(names));
     return uniqueNames;
-};
+  };
 
   async function handleInputChange(value: string) {
     setCity(value);
@@ -38,21 +39,21 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
       try {
         const response = await axios.get(
           //make input its own Suggestions
-         `https://openplzapi.org/de/Localities?name=${value}`
+          `https://openplzapi.org/de/Localities?name=${value}`
         );
         const suggestions = response.data.map((item: any) => item.name);
         setSuggestions(removeDuplicateCitys(suggestions));
-        console.log("Should work",suggestions);
+        console.log("Should work", suggestions);
         setError("")
         setShowSuggestions(true);
       } catch (error) {
-        console.log("Should not",suggestions);
+        console.log("Should not", suggestions);
         setSuggestions([]);
         setShowSuggestions(false);
       }
     }
     else {
-      console.log("Should work",suggestions);
+      console.log("Should work", suggestions);
       setSuggestions([]);
       setShowSuggestions(false);
     }
@@ -65,7 +66,7 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
 
   function handleSubmitSearch(e: React.FormEvent<HTMLFormElement>) {
     setLoadingCity(true);
-    if(e !== null){
+    if (e !== null) {
       e.preventDefault();
     }
     if (suggestions.length == 0) {
@@ -81,6 +82,7 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
       }, 500);
     }
   }
+
   function handleButtonSubmitSearch() {
     setLoadingCity(true);
     if (suggestions.length == 0) {
@@ -104,7 +106,10 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
           <p className='text-content-1 text-3xl'>Weather</p>
           <MdWbSunny className='text-3xl mt-1 text-bkg-3' />
         </h2>
-        <GrillModal apiData={apiDataFromMainPage} forecast={forcastData}/>
+        <h2 className='flex items-center justify-center gap-1 border border-gray-200 rounded-xl px-3 py-1 hover:border-gray-400 hover:bg-gray-100'>
+          <MdOutdoorGrill className='text-2xl text-content-1' />
+          <GrillModal apiData={apiDataFromMainPage} forecast={forcastData} />
+        </h2>
         <section className='flex gap-2 items-center'>
           <div>
             <ThemeToggle />
@@ -117,9 +122,9 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
               value={city}
               buttonType='text'
               onChange={(e) => handleInputChange(e.target.value)}
-              onSubmit={handleSubmitSearch} 
+              onSubmit={handleSubmitSearch}
               onButtonSubmit={handleButtonSubmitSearch}
-              />
+            />
             <SuggetionBox
               {...{
                 showSuggestions,

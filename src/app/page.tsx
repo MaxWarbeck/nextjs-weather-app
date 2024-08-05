@@ -110,14 +110,14 @@ export default function Home() {
   });
 
   const filteredWeatherData = firstDataForEachDate?.filter(
-    day => day?.main.temp_min !== undefined && day.main.temp_min >= 293)
-  .map(day => ({
-    date: day?.dt_txt,
-    minTemp: day?.main.temp_min,
-    maxTemp: day?.main.temp_max,
-    weatherDisc: day?.weather[0].description,
-    icon: day?.weather[0].icon
-  }));
+    day => day?.main.temp_min !== undefined && day.main.temp_min >= 293 && !day.weather[0].description.includes('rain'))
+    .map(day => ({
+      date: day?.dt_txt,
+      minTemp: day?.main.temp_min,
+      maxTemp: day?.main.temp_max,
+      weatherDisc: day?.weather[0].description,
+      icon: day?.weather[0].icon
+    }));
 
   if (isLoading) return (
     <div className="flex items-center min-h-screen justify-center bg-bkg-2">
@@ -127,7 +127,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-4 bg-bkg-2 min-h-screen">
-      <Navbar location={data?.city.name} apiDataFromMainPage={data} forcastData={filteredWeatherData}/>
+      <Navbar location={data?.city.name} apiDataFromMainPage={data} forcastData={filteredWeatherData} />
       <main className="px-3 max-w-7xl mx-auto flex flex-col gap-9 w-full pb-10 pt-4">
         {loadingCity ? <WeatherSkeleton /> :
           <>
