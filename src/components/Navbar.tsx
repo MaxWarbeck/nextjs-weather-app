@@ -27,24 +27,32 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
   const [place, setPlace] = useAtom(placeAtom);
   const [_, setLoadingCity] = useAtom(loadingCityAtom);
 
+  const removeDuplicateCitys = (names: string[]): string[] => {
+    const uniqueNames = Array.from(new Set(names));
+    return uniqueNames;
+};
+
   async function handleInputChange(value: string) {
     setCity(value);
     if (value.length >= 3) {
       try {
         const response = await axios.get(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${value},${countryCode}&limit=${limit}&appid=${API_KEY}`
+          //make input its own Suggestions
+         `https://openplzapi.org/de/Localities?name=${value}`
         );
-
         const suggestions = response.data.map((item: any) => item.name);
-        setSuggestions(suggestions);
+        setSuggestions(removeDuplicateCitys(suggestions));
+        console.log("Should work",suggestions);
         setError("")
         setShowSuggestions(true);
       } catch (error) {
+        console.log("Should not",suggestions);
         setSuggestions([]);
         setShowSuggestions(false);
       }
     }
     else {
+      console.log("Should work",suggestions);
       setSuggestions([]);
       setShowSuggestions(false);
     }
@@ -57,7 +65,24 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
 
   function handleSubmitSearch(e: React.FormEvent<HTMLFormElement>) {
     setLoadingCity(true);
-    e.preventDefault();
+    if(e !== null){
+      e.preventDefault();
+    }
+    if (suggestions.length == 0) {
+      setError("Location not found");
+      setLoadingCity(false);
+    }
+    else {
+      setError("");
+      setTimeout(() => {
+        setLoadingCity(false);
+        setPlace(city);
+        setShowSuggestions(false);
+      }, 500);
+    }
+  }
+  function handleButtonSubmitSearch() {
+    setLoadingCity(true);
     if (suggestions.length == 0) {
       setError("Location not found");
       setLoadingCity(false);
@@ -92,7 +117,9 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
               value={city}
               buttonType='text'
               onChange={(e) => handleInputChange(e.target.value)}
-              onSubmit={handleSubmitSearch} />
+              onSubmit={handleSubmitSearch} 
+              onButtonSubmit={handleButtonSubmitSearch}
+              />
             <SuggetionBox
               {...{
                 showSuggestions,

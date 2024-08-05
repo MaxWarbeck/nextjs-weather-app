@@ -30,6 +30,7 @@ export default function GrillModal({ apiData, forecast }: Props) {
   //get data from first api call On PAGE.tsx, make it so then i only get the data i need or get all data and make sorting function here
   // think about a way to get the place in this function
   //Change any types
+  // get  default value that is rendert when i get no data
 
   function forecastData(data: Forecast[]) {
     return (

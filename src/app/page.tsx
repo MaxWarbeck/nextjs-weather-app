@@ -110,7 +110,7 @@ export default function Home() {
   });
 
   const filteredWeatherData = firstDataForEachDate?.filter(
-    day => day?.main.temp_min !== undefined && day.main.temp_min >= 280)
+    day => day?.main.temp_min !== undefined && day.main.temp_min >= 293)
   .map(day => ({
     date: day?.dt_txt,
     minTemp: day?.main.temp_min,
@@ -183,7 +183,7 @@ export default function Home() {
                 </Container>
                 <Container className="bg-bkg-3 px-6 gap-4 justify-between overflow-x-auto">
                   <WeatherDetails
-                    visability={meterToKilometers(firstData?.visibility ?? 1000)}
+                    visibility={meterToKilometers(firstData?.visibility ?? 1000)}
                     airPressure={`${firstData?.main.pressure} hPa`}
                     humidity={`${firstData?.main.humidity}%`}
                     sunrise={format(fromUnixTime(data?.city.sunrise ?? 1702949452),
@@ -219,7 +219,7 @@ export default function Home() {
                     fromUnixTime(data?.city.sunset ?? 1702517657),
                     "H:mm"
                   )}
-                  visability={`${meterToKilometers(d?.visibility ?? 10000)}`}
+                  visibility={`${meterToKilometers(d?.visibility ?? 10000)}`}
                   windSpeed={`${convertWindSpeed(d?.wind.speed ?? 1.64)}`}
                 />
               ))}
