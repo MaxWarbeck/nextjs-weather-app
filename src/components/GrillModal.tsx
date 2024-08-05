@@ -9,6 +9,7 @@ import { format, parseISO } from "date-fns";
 import { useState } from 'react';
 import WeatherIcon from './WeatherIcon';
 
+
 type Props = {
   apiData: any,
   forecast: any,
@@ -26,6 +27,8 @@ export default function GrillModal({ apiData, forecast }: Props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  console.log(forecast)
 
   //get data from first api call On PAGE.tsx, make it so then i only get the data i need or get all data and make sorting function here
   // think about a way to get the place in this function
@@ -67,9 +70,9 @@ export default function GrillModal({ apiData, forecast }: Props) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>
+      <button className="text-content-1 px-3 py-3" onClick={handleOpen}>
         Grill Days
-      </Button>
+      </button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -77,11 +80,32 @@ export default function GrillModal({ apiData, forecast }: Props) {
         aria-describedby="modal-modal-description"
       >
         <Box className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-bkg-1 border-2 border-black shadow-xl p-4 max-h-full">
-          <Typography id="modal-modal-title" variant="h6" component="h2" className="text-content-1 text-center mb-4">
-            Das sind die nächsten guten Grill Tage
+          <Typography id="modal-modal-title" variant="h6" component="h2" className="text-content-1 text-center mb-4 font-bold">
+            Grill Days
           </Typography>
           <div className='flex overflow-auto'>
-            {forecastData(forecast)}
+            {
+              (Object.entries(forecast).length > 0) ?
+                (
+                  forecastData(forecast)
+                ) :
+                (
+                  <>
+                    <div className='flex flex-col space-y-2 p-3 w-fit justify-center items-center bg-bkg-1' >
+                      <div className='flex flex-col bg-con p-4 rounded-lg space-y-2'>
+                        <div className='flex justify-center'>
+                          <p className='text-content-1 text-center'>
+                            Das wird wohl nichts mit Grillen, es wurden keine guten Tage zum Grillen gefunden
+                          </p>
+                        </div>
+                        <div className="flex justify-center py-2">
+                          <iframe src="https://giphy.com/embed/W0c3xcZ3F1d0EYYb0f" width="240" height="200" allowFullScreen />
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )
+            }
           </div>
         </Box>
       </Modal>
