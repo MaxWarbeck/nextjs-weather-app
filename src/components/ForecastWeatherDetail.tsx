@@ -44,7 +44,7 @@ export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps)
                     <p className='text-content-2 capitalize'>{description}</p>
                 </div>
             </section>
-            <section className='overflow-x-autoa flex justify-between gap-4 px-4 w-full pr-10'>
+            <section className='overflow-x-auto flex justify-between gap-4 px-4 w-full pr-10'>
                 <WeatherDetails {...props} />
             </section>
         </Container>

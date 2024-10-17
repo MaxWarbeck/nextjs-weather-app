@@ -11,8 +11,6 @@ type Props = {
   onButtonSubmit: React.MouseEventHandler<HTMLButtonElement> | undefined
 }
 
-//Make button do something
-
 export default function Searchbox(props: Props) {
   return (
     <form onSubmit={props.onSubmit} className={cn('flex relative items-center justify-center h-10', props.className)}>

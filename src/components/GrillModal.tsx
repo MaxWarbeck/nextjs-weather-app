@@ -11,7 +11,6 @@ import WeatherIcon from './WeatherIcon';
 
 
 type Props = {
-  apiData: any,
   forecast: any,
 }
 
@@ -23,12 +22,10 @@ type Forecast = {
   icon: string;
 };
 
-export default function GrillModal({ apiData, forecast }: Props) {
+export default function GrillModal({ forecast }: Props) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  console.log(forecast)
 
   //get data from first api call On PAGE.tsx, make it so then i only get the data i need or get all data and make sorting function here
   // think about a way to get the place in this function

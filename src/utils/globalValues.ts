@@ -4,6 +4,7 @@ export const limit = 6;
 
 export const countryCode = 'DE'
 
+
 export interface WeatherDetail {
     dt: number;
     main: {
