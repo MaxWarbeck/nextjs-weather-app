@@ -1,4 +1,6 @@
+import { convertCelsiusNumber } from "./constants";
+
 export function convertKelvinToCelsius(tempInKelvin: number): number {
-    const tempInCelsius = tempInKelvin -273.15;
+    const tempInCelsius = tempInKelvin - convertCelsiusNumber;
     return Math.floor(tempInCelsius);
 }

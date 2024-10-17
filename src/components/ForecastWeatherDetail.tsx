@@ -1,5 +1,5 @@
 import Container from '@/components/Container';
-import { convertKelvinToCelsius } from '@/utils/convertKelvinToCelsius';
+import { defaultValues, convertKelvinToCelsius } from '@utils';
 import WeatherDetails, { WeatherDetailProps } from './WeatherDetails';
 import WeatherIcon from './WeatherIcon';
 
@@ -16,9 +16,9 @@ export interface ForecastWeatherDetailProps extends WeatherDetailProps {
 
 export default function ForecastWeatherDetail(props: ForecastWeatherDetailProps) {
     const {
-        weatherIcon = "02d",
-        date = "19.09",
-        day = "Tuesday",
+        weatherIcon = defaultValues.weatherIcon,
+        date = defaultValues.date,
+        day = defaultValues.day,
         temp,
         feels_like,
         temp_min,

@@ -1,12 +1,11 @@
 'use client'
 
-import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
+import { useState } from 'react';
+import { format, parseISO } from "date-fns";
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
-import { format, parseISO } from "date-fns";
-import { useState } from 'react';
+import { convertKelvinToCelsius } from "@utils";
 import WeatherIcon from './WeatherIcon';
 
 
@@ -59,7 +58,6 @@ export default function GrillModal({ forecast }: Props) {
             </div>
           </div>
         </div>
-
       )
       )
     )

@@ -1,10 +1,5 @@
 export const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
 
-export const limit = 6;
-
-export const countryCode = 'DE'
-
-
 export interface WeatherDetail {
     dt: number;
     main: {
