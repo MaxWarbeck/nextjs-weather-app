@@ -1,7 +1,7 @@
 import React from 'react'
+import { MdWbSunny, MdOutdoorGrill } from 'react-icons/md';
 import GrillModal from './GrillModal'
 import Searchbox from './Searchbox'
-import { MdWbSunny, MdOutdoorGrill } from 'react-icons/md';
 
 type Props = {
     forecast: any
@@ -15,7 +15,7 @@ type Props = {
 
 export default function SideNavBar(props: Props) {
     return (
-        <div className='w-full bg-bkg-1 flex flex-col justify-end sticky py-4 shadow-sm xl:hidden 2xl:hidden lg:hidden md:hidden'>
+        <div className='w-full bg-bkg-1 flex flex-col justify-end sticky py-4 '>
             <h2 className='flex items-center justify-center gap-2'>
                 <p className='text-content-1 text-3xl'>Weather</p>
                 <MdWbSunny className='text-3xl mt-1 text-bkg-3' />

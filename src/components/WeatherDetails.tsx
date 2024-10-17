@@ -3,6 +3,7 @@ import { FiDroplet } from 'react-icons/fi';
 import { ImMeter } from 'react-icons/im';
 import { LuEye, LuSunrise, LuSunset } from 'react-icons/lu';
 import { MdAir } from 'react-icons/md';
+import { defaultValues } from '@utils';
 
 export interface WeatherDetailProps {
     visibility: string;
@@ -16,12 +17,12 @@ export interface WeatherDetailProps {
 export default function WeatherDetails(props: WeatherDetailProps) {
 
     const {
-        visibility = "25km",
-        humidity = "61%",
-        windSpeed = "7 km/h",
-        airPressure = "1012 hPa",
-        sunrise = "6.20",
-        sunset = "18.48"
+        visibility = defaultValues.visibility,
+        humidity = defaultValues.humidity,
+        windSpeed = defaultValues.windSpeed,
+        airPressure = defaultValues.airPressure,
+        sunrise = defaultValues.sunrise,
+        sunset = defaultValues.sunset
     } = props;
 
     return (

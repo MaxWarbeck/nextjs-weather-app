@@ -1,11 +1,11 @@
 'use client'
 
 import React, { useState } from 'react'
-import { MdWbSunny, MdMyLocation, MdOutlineLocationOn, MdOutdoorGrill, MdMenu } from 'react-icons/md';
-import Searchbox from './Searchbox';
 import axios from 'axios';
 import { useAtom } from 'jotai';
-import { loadingCityAtom, placeAtom } from '@/app/atom';
+import { MdWbSunny, MdMyLocation, MdOutlineLocationOn, MdOutdoorGrill, MdMenu } from 'react-icons/md';
+import { loadingCityAtom, placeAtom } from '@utils';
+import Searchbox from './Searchbox';
 import ThemeToggle from './DarkModeSwitch';
 import GrillModal from './GrillModal';
 import SuggetionBox from './SuggetionBox';
@@ -105,11 +105,11 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
           <p className='text-content-1 text-3xl'>Weather</p>
           <MdWbSunny className='text-3xl mt-1 text-bkg-3' />
         </h2>
-        <div className="">
-          <h2 className='flex items-center justify-center gap-1 border border-gray-200 rounded-xl px-3 py-1 hover:border-gray-400 hover:bg-gray-100 sm:hidden md:visible lg:visible xl:visible 2xl:visible'>
-            <MdOutdoorGrill className='text-2xl text-content-1' />
-            <GrillModal forecast={forcastData} />
-          </h2>
+        <h2 className='flex items-center justify-center gap-1 border border-gray-200 rounded-xl px-3 py-1 hover:border-gray-400 hover:bg-gray-100'>
+          <MdOutdoorGrill className='text-2xl text-content-1' />
+          <GrillModal forecast={forcastData} />
+        </h2>
+        <div className="right side">
           <section className='flex gap-2 items-center'>
             <div>
               <ThemeToggle />
@@ -117,7 +117,7 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
             <MdMyLocation className='text 2xl text-content-1 hover:opacity-80 cursor-pointer' />
             <MdOutlineLocationOn className='text-3xl text-content-1' />
             <p className='text-content-1 text-sm'>{location}</p>
-            <div className='relative sm:hidden md:visible lg:visible xl:visible 2xl:visible'>
+            <div className='relative '>
               <Searchbox
                 value={city}
                 buttonType='text'
@@ -134,14 +134,6 @@ export default function Navbar({ location, apiDataFromMainPage, forcastData }: P
                 }}
               />
             </div>
-            <SideNavBar
-              value={city}
-              buttonType='text'
-              onChange={(e) => handleInputChange(e.target.value)}
-              onSubmit={handleSubmitSearch}
-              onButtonSubmit={handleButtonSubmitSearch}
-              forecast={forcastData}
-            />
             <button className='xl:hidden lg:hidden md:hidden sm:visible text-pink-500' type='button'>
               <MdMenu className='text-xl' />
             </button>

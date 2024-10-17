@@ -1,6 +1,6 @@
-import { cn } from '@/utils/cn'
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
+import { cn } from '@utils'
 
 export default function WeatherIcon(props: React.HTMLProps<HTMLDivElement> & { iconname: string }) {
     return (

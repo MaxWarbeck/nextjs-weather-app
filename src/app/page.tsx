@@ -1,22 +1,30 @@
 'use client'
 
-import axios from "axios";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
+import {
+  fromUnixTime,
+  parseISO
+} from "date-fns";
+import axios from "axios";
 import { format } from "date-fns/format";
 import { useAtom } from "jotai";
-import { useQuery } from "react-query";
-import Container from "@/components/Container";
-import WeatherSkeleton from "@/components/WeatherSkeleton";
-import { fromUnixTime, parseISO } from "date-fns";
-import { loadingCityAtom, placeAtom } from "./atom";
-import { convertKelvinToCelsius } from "@/utils/convertKelvinToCelsius";
-import { convertWindSpeed } from "@/utils/convertWindSpeed";
-import { getDayOrNightIcon } from "@/utils/getDayOrNightIcon";
-import { meterToKilometers } from "@/utils/metersToKilometer";
+import Container from "@components/Container";
+import WeatherSkeleton from "@components/WeatherSkeleton";
 import Navbar from "@/components/Navbar";
 import WeatherIcon from "@/components/WeatherIcon";
 import ForecastWeatherDetail from "@/components/ForecastWeatherDetail";
 import WeatherDetails from "@/components/WeatherDetails";
+import {
+  loadingCityAtom,
+  placeAtom
+} from "@utils";
+import {
+  convertKelvinToCelsius,
+  convertWindSpeed,
+  getDayOrNightIcon,
+  meterToKilometers
+} from "@utils";
 import { API_KEY } from "@/utils/globalValues";
 
 interface WeatherDetail {

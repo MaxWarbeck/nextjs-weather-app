@@ -1,5 +1,5 @@
-import { cn } from '@/utils/cn'
 import React from 'react'
+import { cn } from '@utils'
 
 export default function container(props: React.HTMLProps<HTMLDivElement>) {
     return (
