@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useQuery } from "react-query";
 import {
   fromUnixTime,
-  parseISO
 } from "date-fns";
 import axios from "axios";
 import { format } from "date-fns/format";
@@ -100,6 +99,7 @@ export default function Home() {
   }, [place, refetch])
 
   const firstData = data?.list[0];
+  console.log(firstData);
 
   const uniqueDates = [
     ...new Set(
@@ -142,8 +142,8 @@ export default function Home() {
             <section className="space-y-4">
               <div className="space-y-2">
                 <h2 className="flex gap-1 text-2xl items-end text-content-1">
-                  <p>{format(parseISO(firstData?.dt_txt ?? ''), 'EEEE')}</p>
-                  <p className="text-lg">({format(parseISO(firstData?.dt_txt ?? ''), 'dd.MM.yyyy')})</p>
+                  <p>{format(firstData?.dt_txt ?? '', 'EEEE')}</p>
+                  <p className="text-lg">({format(firstData?.dt_txt ?? '', 'dd.MM.yyyy')})</p>
                 </h2>
                 <Container className=" gap-10 px-6 items-center">
                   <div className="flex flex-col px-4">
@@ -173,7 +173,7 @@ export default function Home() {
                         className="flex flex-col justify-between gap-2 items-center text-content-2 text-xs font-semibold "
                       >
                         <p className="whitespace-nowrap">
-                          {format(parseISO(d.dt_txt), "h:mm a")}
+                          {format(d.dt_txt, "h:mm a")}
                         </p>
                         <WeatherIcon iconname={getDayOrNightIcon(d.weather[0].icon, d.dt_txt)} />
                         <p>
@@ -211,8 +211,8 @@ export default function Home() {
                   key={i}
                   description={d?.weather[0].description ?? ""}
                   weatherIcon={d?.weather[0].icon ?? "01d"}
-                  date={format(parseISO(d?.dt_txt ?? "2024-07-23"), "dd.MM")}
-                  day={format(parseISO(d?.dt_txt ?? "2024-07-23"), "EEEE")}
+                  date={format(d?.dt_txt ?? "2024-07-23", "dd.MM")}
+                  day={format(d?.dt_txt ?? "2024-07-23", "EEEE")}
                   feels_like={d?.main.feels_like ?? 0}
                   temp={d?.main.temp ?? 0}
                   temp_max={d?.main.temp_max ?? 0}
