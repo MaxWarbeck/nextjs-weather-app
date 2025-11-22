@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Typography from '@mui/material/Typography';
@@ -43,8 +43,8 @@ export default function GrillModal({ forecast }: Props) {
               <p className='text-content-1 capitalize'>{dataValue?.weatherDisc}</p>
             </div>
             <div className='flex justify-center space-x-2'>
-              <p className='text-content-1'>{format(parseISO(dataValue?.date ?? ''), 'EEEE')}</p>
-              <p className='text-content-1 text-sm'>({format(parseISO(dataValue?.date ?? ''), 'dd.MM.yyyy')})</p>
+              <p className='text-content-1'>{format(dataValue?.date ?? '', 'EEEE')}</p>
+              <p className='text-content-1 text-sm'>({format(dataValue?.date ?? '', 'dd.MM.yyyy')})</p>
             </div>
             <div className='flex justify-center'>
               <p className='text-content-1'>Temp: {

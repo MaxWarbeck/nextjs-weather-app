@@ -1,4 +1,4 @@
-export const API_KEY = process.env.NEXT_PUBLIC_WEATHER_KEY;
+export const API_KEY = '4f6d9626a6450bec491b761553d1f284';
 
 export interface WeatherDetail {
     dt: number;
